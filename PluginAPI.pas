@@ -30,13 +30,13 @@ type
 
   // Интерфейс, который должна реализовывать каждая DLL
   IPluginTasks = interface
-    ['{3B5A7C2F-1A4D-4A5B-9E3D-8C1E6F2A7B9C}']
-    function GetTasksCount: Integer;
-    function GetTaskInfo(Index: Integer): TTaskInfo;
+    ['{3B5A7C2F-1A4D-4A5B-9E3D-8C1E6F2A7B9C}'] // GUID обязателен
+    function GetTasksCount: Integer; stdcall;
+    function GetTaskInfo(Index: Integer): TTaskInfo; stdcall;
     procedure ExecuteTask(const TaskID: string; Parameters: array of string;
-      Callback: TTaskCallback; ProgressCallback: TProgressCallback);
-    function CanCancelTask(const TaskID: string): Boolean;
-    procedure CancelTask(const TaskID: string);
+      Callback: TTaskCallback; ProgressCallback: TProgressCallback); stdcall;
+    function CanCancelTask(const TaskID: string): Boolean; stdcall;
+    procedure CancelTask(const TaskID: string); stdcall;
   end;
 
 implementation
