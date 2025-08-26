@@ -24,12 +24,12 @@ implementation
 
 { TFileOperationsPlugin }
 
-function TFileOperationsPlugin.GetTasksCount: Integer;  stdcall;
+function TFileOperationsPlugin.GetTasksCount: Integer;
 begin
   Result := 2; // У нас две задачи: поиск файлов и поиск в файле
 end;
 
-function TFileOperationsPlugin.GetTaskInfo(Index: Integer): TTaskInfo;   stdcall;
+function TFileOperationsPlugin.GetTaskInfo(Index: Integer): TTaskInfo;
 begin
   case Index of
     0: begin
@@ -58,7 +58,7 @@ begin
 end;
 
 procedure TFileOperationsPlugin.ExecuteTask(const TaskID: string;
-  Parameters: array of string; Callback: TTaskCallback; ProgressCallback: TProgressCallback);    stdcall;
+  Parameters: array of string; Callback: TTaskCallback; ProgressCallback: TProgressCallback);
 var
   Result: TTaskResult;
 begin
@@ -99,12 +99,12 @@ begin
   end;
 end;
 
-function TFileOperationsPlugin.CanCancelTask(const TaskID: string): Boolean;    stdcall;
+function TFileOperationsPlugin.CanCancelTask(const TaskID: string): Boolean;
 begin
   Result := True; // Наши задачи поддерживают отмену
 end;
 
-procedure TFileOperationsPlugin.CancelTask(const TaskID: string);       stdcall;
+procedure TFileOperationsPlugin.CancelTask(const TaskID: string);
 begin
   FCancelRequested := True;
 end;

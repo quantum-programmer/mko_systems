@@ -2,7 +2,8 @@ program TaskRunner;
 
 uses
   Vcl.Forms,
-  MainForm in 'MainForm.pas' {Form1};
+  MainForm in 'MainForm.pas' {Form1},
+  PluginAPI in 'PluginAPI.pas';
 
 {$R *.res}
 

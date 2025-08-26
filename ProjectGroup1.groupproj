@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6B994BCA-69ED-48E8-9AA2-A5187E27F061}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TaskRunner.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FileOperations\FileOpers.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ShellCommandsTasks\ShellControl.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TaskRunner">
+        <MSBuild Projects="TaskRunner.dproj"/>
+    </Target>
+    <Target Name="TaskRunner:Clean">
+        <MSBuild Projects="TaskRunner.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TaskRunner:Make">
+        <MSBuild Projects="TaskRunner.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FileOpers">
+        <MSBuild Projects="FileOperations\FileOpers.dproj"/>
+    </Target>
+    <Target Name="FileOpers:Clean">
+        <MSBuild Projects="FileOperations\FileOpers.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FileOpers:Make">
+        <MSBuild Projects="FileOperations\FileOpers.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ShellControl">
+        <MSBuild Projects="ShellCommandsTasks\ShellControl.dproj"/>
+    </Target>
+    <Target Name="ShellControl:Clean">
+        <MSBuild Projects="ShellCommandsTasks\ShellControl.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ShellControl:Make">
+        <MSBuild Projects="ShellCommandsTasks\ShellControl.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TaskRunner;FileOpers;ShellControl"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TaskRunner:Clean;FileOpers:Clean;ShellControl:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TaskRunner:Make;FileOpers:Make;ShellControl:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
