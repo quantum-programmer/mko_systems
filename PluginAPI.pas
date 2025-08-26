@@ -25,8 +25,8 @@ type
     Data: TObject; // Для произвольных данных результатов
   end;
 
-  TProgressCallback = procedure(Progress: Integer; const Message: string) of object;
-  TTaskCallback = procedure(const Result: TTaskResult) of object;
+  TTaskCallback = reference to procedure(const Result: TTaskResult);
+  TProgressCallback = reference to procedure(Progress: Integer; const Message: string);
 
   // Интерфейс, который должна реализовывать каждая DLL
   IPluginTasks = interface
